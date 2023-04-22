@@ -186,27 +186,27 @@ model = ChessNetwork()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 # Training loop
-for epoch in range(10):
-    epoch_loss = 0.0
-    for batch_index, (inputs, targets) in enumerate(data_train_loader):
-
-        optimizer.zero_grad()
-        outputs = model(inputs)
-
-        # Loss
-
-        loss_from = metric_from(outputs[:, 0, :], targets[:, 0, :])
-        loss_to = metric_to(outputs[:, 1, :], targets[:, 1, :])
-        loss = loss_from + loss_to
-
-        loss.backward()
-        optimizer.step()
-
-        # Accumulate the loss
-
-        epoch_loss += loss.item()
-
-    print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, 10, epoch_loss / len(data_train_loader)))
+# for epoch in range(10):
+#    epoch_loss = 0.0
+#    for batch_index, (inputs, targets) in enumerate(data_train_loader):
+#
+#        optimizer.zero_grad()
+#        outputs = model(inputs)
+#
+#        # Loss
+#
+#        loss_from = metric_from(outputs[:, 0, :], targets[:, 0, :])
+#        loss_to = metric_to(outputs[:, 1, :], targets[:, 1, :])
+#        loss = loss_from + loss_to
+#
+#        loss.backward()
+#        optimizer.step()
+#
+#        # Accumulate the loss
+#
+#        epoch_loss += loss.item()
+#
+#    print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, 10, epoch_loss / len(data_train_loader)))
 
 if not os.path.exists('trainedModel'):
     os.mkdir('trainedModel')
